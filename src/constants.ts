@@ -66,3 +66,10 @@ const AGE_FROM = 18;
 const AGE_TO = 99;
 
 export const AGE_OPTIONS: SelectOptionType[] = generateAgeRangeOptions(AGE_FROM, AGE_TO);
+
+export const SUBJECTS_DEFAULT = {
+  label: 'Любая тема',
+  value: -1,
+};
+
+export const BASE_URL = 'https://freuders-web-api-test-3.azurewebsites.net/api/';

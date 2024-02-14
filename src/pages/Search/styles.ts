@@ -10,3 +10,7 @@ export const searchContainer = css`
   max-width: 1184px;
   padding: 52px 44px;
 `;
+
+export const divider = css`
+  width: 100%;
+`;

@@ -14,6 +14,7 @@ export const firstLineFilters = css`
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+
   & > div {
     width: 312px;
     & .custom__control {
@@ -27,17 +28,15 @@ export const firstLineFilters = css`
       }
     }
   }
-`;
+  @media (max-width: 1200px) {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
 
-export const filterWithLabelContainer = css`
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  & > p {
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 20px;
-    padding-left: 8px;
+    & > div {
+      width: 100%;
+    }
   }
 `;
 
@@ -69,6 +68,32 @@ export const ageContainer = css`
       }
     }
   }
+
+  @media (max-width: 1200px) {
+    width: 100%;
+    gap: 0;
+  }
+`;
+
+export const filterWithLabelContainer = css`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  & > p {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 20px;
+    padding-left: 8px;
+  }
+
+  @media (max-width: 1200px) {
+    &:has(.css-${ageContainer.name}) {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+  }
 `;
 
 export const ageLabelWrapper = css`
@@ -77,5 +102,13 @@ export const ageLabelWrapper = css`
   gap: 12px;
   & > p {
     padding-left: 12px;
+  }
+
+  @media (max-width: 1200px) {
+    width: 100%;
+
+    & > div {
+      flex: 1;
+    }
   }
 `;
