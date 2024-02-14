@@ -7,7 +7,7 @@ export type SelectOptionType = {
 
 export const GENDER_OPTIONS: SelectOptionType[] = [
   {
-    value: 0,
+    value: -1,
     label: 'Любого пола',
   },
   {
@@ -22,7 +22,7 @@ export const GENDER_OPTIONS: SelectOptionType[] = [
 
 export const SPECIALITY_OPTIONS: SelectOptionType[] = [
   {
-    value: 0,
+    value: -1,
     label: 'Все варианты',
   },
   {
@@ -41,7 +41,7 @@ export const SPECIALITY_OPTIONS: SelectOptionType[] = [
 
 export const RATING_OPTIONS: SelectOptionType[] = [
   {
-    value: 0,
+    value: -1,
     label: 'Не важен',
   },
   {
