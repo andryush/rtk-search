@@ -6,7 +6,8 @@
       "plugin:import/recommended",
       "plugin:jsx-a11y/recommended",
       "plugin:@typescript-eslint/recommended",
-      "eslint-config-prettier"
+      "eslint-config-prettier",
+      "import-resolver-alias"
     ],
     "settings": {
       "react": {
@@ -23,7 +24,7 @@
             ".ts",
             ".tsx"
           ]
-        }
+        }  
       }
     },
     "rules": {
