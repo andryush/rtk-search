@@ -40,7 +40,7 @@ const SearchPage = () => {
       <FiltersBar />
       <hr css={styles.divider} color="#ccc" />
       {isLoading && <Spinner />}
-      {data?.data.items.length ? <CardList offset={offset} /> : <Empty />}
+      {data?.data.items.length ? <CardList /> : <Empty />}
       <div>
         <button css={styles.searchButton} onClick={offsetCounter}>
           Показать еще

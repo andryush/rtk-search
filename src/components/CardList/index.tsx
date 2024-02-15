@@ -33,7 +33,7 @@ const CardList = () => {
   return (
     <div css={styles.gridContainer}>
       {userList.map((card) => (
-        <Card key={card.userId} {...card} />
+        <Card key={`${card.userId}${crypto.randomUUID()}`} {...card} />
       ))}
     </div>
   );
