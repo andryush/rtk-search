@@ -1,11 +1,15 @@
-import { FiltersBar } from '@/components';
+import { Empty, FiltersBar } from '@/components';
 import * as styles from './styles';
 import CardList from '@/components/CardList';
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useGetSpecialistsQuery } from '@/store/apiSlice';
 
 const SearchPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { data } = useGetSpecialistsQuery(searchParams.toString(), { skip: !searchParams.toString() });
+
+  console.log('data', data);
 
   useEffect(() => {
     const params = searchParams.toString();
@@ -22,7 +26,8 @@ const SearchPage = () => {
     <div css={styles.searchContainer}>
       <FiltersBar />
       <hr css={styles.divider} color="#ccc" />
-      <CardList />
+      {data?.data.items.length ? <CardList /> : <Empty />}
+      {/* <CardList /> */}
       <div style={{ background: 'blue', width: '100%', height: '50px' }}></div>
     </div>
   );
