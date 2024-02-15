@@ -5,7 +5,8 @@ import { useGetSpecialistsQuery } from '@/store/apiSlice';
 
 const CardList = () => {
   const [searchParams] = useSearchParams();
-  const { data } = useGetSpecialistsQuery(searchParams.toString());
+  const { data } = useGetSpecialistsQuery(searchParams.toString(), { skip: !searchParams.toString() });
+
   return (
     <div css={styles.gridContainer}>
       {data?.data?.items?.map((card) => (
