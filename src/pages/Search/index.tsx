@@ -27,7 +27,6 @@ const SearchPage = () => {
       <FiltersBar />
       <hr css={styles.divider} color="#ccc" />
       {data?.data.items.length ? <CardList /> : <Empty />}
-      {/* <CardList /> */}
       <div style={{ background: 'blue', width: '100%', height: '50px' }}></div>
     </div>
   );
