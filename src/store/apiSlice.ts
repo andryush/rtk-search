@@ -9,7 +9,6 @@ export const specialistsApi = createApi({
   endpoints: (builder) => ({
     getSubjects: builder.query<SubjectsData, void>({
       query: () => `subjects`,
-      // transformResponse: () =>
     }),
     getSpecialists: builder.query<SpecialistsData, string>({
       query: (params) => `search/specialists?${params}`,

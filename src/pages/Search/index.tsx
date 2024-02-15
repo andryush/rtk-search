@@ -1,14 +1,28 @@
 import { Empty, FiltersBar } from '@/components';
 import * as styles from './styles';
 import CardList from '@/components/CardList';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useGetSpecialistsQuery } from '@/store/apiSlice';
 import { Spinner } from '@/components/Spinner';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/store';
+import { setSearchTouched } from '@/store/searchSlice';
 
 const SearchPage = () => {
+  const [offset, setOffset] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
-  const { data, isLoading } = useGetSpecialistsQuery(searchParams.toString(), { skip: !searchParams.toString() });
+  const { data, isLoading } = useGetSpecialistsQuery(searchParams.toString(), {
+    skip: !searchParams.toString(),
+  });
+  const dispatch = useDispatch<AppDispatch>();
+
+  const offsetCounter = () => {
+    setOffset((prev) => prev + 1);
+    searchParams.set('offset', `${Number(offset) + 1}`);
+    setSearchParams(searchParams);
+    dispatch(setSearchTouched(false));
+  };
 
   useEffect(() => {
     const params = searchParams.toString();
@@ -26,9 +40,11 @@ const SearchPage = () => {
       <FiltersBar />
       <hr css={styles.divider} color="#ccc" />
       {isLoading && <Spinner />}
-      {data?.data.items.length ? <CardList /> : <Empty />}
+      {data?.data.items.length ? <CardList offset={offset} /> : <Empty />}
       <div>
-        <button css={styles.searchButton}>Показать еще</button>
+        <button css={styles.searchButton} onClick={offsetCounter}>
+          Показать еще
+        </button>
       </div>
     </div>
   );

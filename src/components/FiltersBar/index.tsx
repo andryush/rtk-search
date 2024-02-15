@@ -13,20 +13,18 @@ import { generateAgeToValidOptions } from '@/helpers/generateAgeToValidOptions';
 import { useGetSubjectsQuery, useLazyGetSpecialistsQuery } from '@/store/apiSlice';
 import { useSearchParams } from 'react-router-dom';
 import { useForm, Controller, FieldValues } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/store';
+import { setSearchTouched } from '@/store/searchSlice';
 
 export const FiltersBar = () => {
   const [ageFrom, setAgeFrom] = useState<SelectOptionType | null>(AGE_OPTIONS.at(0)!);
   const [ageTo, setAgeTo] = useState<SelectOptionType | null>(AGE_OPTIONS.at(-1)!);
   const [searchParams, setSearchParams] = useSearchParams();
   const { control, handleSubmit, setValue } = useForm();
+  const dispatch = useDispatch<AppDispatch>();
 
   const [trigger, lastPromiseInfo] = useLazyGetSpecialistsQuery();
-
-  const offsetCounter = () => {
-    const offset = searchParams.get('offset') ?? 0;
-    searchParams.set('offset', `${Number(offset) + 1}`);
-    setSearchParams(searchParams);
-  };
 
   const handleSearch = (data: FieldValues): void => {
     Object.keys(data).forEach((el) => {
@@ -42,7 +40,7 @@ export const FiltersBar = () => {
     });
 
     setSearchParams(searchParams);
-
+    dispatch(setSearchTouched(true));
     trigger(searchParams.toString());
   };
 
@@ -67,7 +65,6 @@ export const FiltersBar = () => {
 
   return (
     <div css={styles.filtersContainer}>
-      <button onClick={offsetCounter}>click</button>
       <div css={styles.firstLineFilters}>
         <div css={styles.filterWithLabelContainer}>
           <p style={{ fontSize: '20px' }}>Я ищу психолога</p>
