@@ -34,8 +34,8 @@ export const FiltersBar = () => {
         searchParams.set(el, '');
       } else if (el === 'rating') {
         const value = data[el].value.split('-');
-        searchParams.set('ratingFrom', value[0]);
-        searchParams.set('ratingTo', value[1]);
+        searchParams.set('ratingTo', value[0]);
+        searchParams.set('ratingFrom', value[1]);
       } else {
         searchParams.set(el, data[el].value);
       }
