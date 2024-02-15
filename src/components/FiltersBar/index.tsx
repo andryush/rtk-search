@@ -29,10 +29,21 @@ export const FiltersBar = () => {
   };
 
   const handleSearch = (data: FieldValues): void => {
-    console.log('formData', data);
+    Object.keys(data).forEach((el) => {
+      if (data[el].value === -1) {
+        searchParams.set(el, '');
+      } else if (el === 'rating') {
+        const value = data[el].value.split('-');
+        searchParams.set('ratingFrom', value[0]);
+        searchParams.set('ratingTo', value[1]);
+      } else {
+        searchParams.set(el, data[el].value);
+      }
+    });
+
     setSearchParams(searchParams);
 
-    // trigger(searchParams.toString());
+    trigger(searchParams.toString());
   };
 
   const { data } = useGetSubjectsQuery(undefined);
@@ -61,13 +72,13 @@ export const FiltersBar = () => {
         <div css={styles.filterWithLabelContainer}>
           <p style={{ fontSize: '20px' }}>Я ищу психолога</p>
           <Controller
-            name="gender"
+            name="sex"
             control={control}
             defaultValue={GENDER_OPTIONS[0]}
             render={({ field }) => (
               <Select
                 {...field}
-                id="gender"
+                id="sex"
                 classNamePrefix="custom"
                 components={{
                   IndicatorSeparator: () => null,
@@ -132,11 +143,12 @@ export const FiltersBar = () => {
         <div css={styles.filterWithLabelContainer}>
           <p>Тема</p>
           <Controller
-            name="subject"
+            name="subjectId"
             control={control}
             defaultValue={SUBJECTS_DEFAULT}
             render={({ field }) => (
               <Select
+                id="subjectId"
                 classNamePrefix="custom"
                 {...field}
                 components={{
@@ -153,12 +165,12 @@ export const FiltersBar = () => {
         <div css={styles.filterWithLabelContainer}>
           <p>Квалификация</p>
           <Controller
-            name="speciality"
+            name="profSpeciality"
             control={control}
             defaultValue={SPECIALITY_OPTIONS[0]}
             render={({ field }) => (
               <Select
-                id="speciality"
+                id="profSpeciality"
                 classNamePrefix="custom"
                 {...field}
                 components={{
