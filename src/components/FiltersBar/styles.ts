@@ -48,6 +48,11 @@ export const searchButton = css`
   line-height: 20px;
   border: unset;
   height: 52px;
+  cursor: pointer;
+  &:hover {
+    border-color: rgb(194, 10, 87);
+    background-color: rgb(194, 10, 87);
+  }
 `;
 
 export const ageContainer = css`

@@ -1,6 +1,8 @@
 import { Specialist } from '@/store/types';
 import * as styles from './styles';
 import { convertTimestampToHours, formatTimeIntl } from '@/helpers';
+import avatarMale from '@assets/avatar-male.png';
+import avatarFemale from '@assets/avatar-female.png';
 
 const Card = ({
   name,
@@ -18,13 +20,16 @@ const Card = ({
   const isMaleText = sex === 1 ? 'Был ' : 'Была ';
   const ratingText = rating > 0 ? rating : 'NEW';
   const isOnline = onlineStatus === 2 ? true : false;
+  const isMale = sex === 1 ? true : false;
+  const isAvatarExists = photoUrl !== null || String(photoUrl).length > 0;
+  const genderAvatar = !isAvatarExists && isMale ? avatarMale : avatarFemale;
 
   return (
     <div css={styles.card}>
       <div css={styles.cardRating}>
         <p css={styles.ratingTextStyle}>Рейтинг</p> <p css={styles.ratingNumberStyle}>{ratingText}</p>
       </div>
-      <img src={photoUrl} alt="profile" css={styles.cardImage} />
+      <img src={isAvatarExists ? photoUrl : genderAvatar} alt="profile" css={styles.cardImage} />
       <div css={styles.cardInfo}>
         <div css={styles.onlineIndicatorContainer}>
           <p css={styles.cardName}>
