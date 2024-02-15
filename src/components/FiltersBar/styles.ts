@@ -53,6 +53,10 @@ export const searchButton = css`
     border-color: rgb(194, 10, 87);
     background-color: rgb(194, 10, 87);
   }
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
 `;
 
 export const ageContainer = css`

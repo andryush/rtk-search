@@ -9,6 +9,7 @@ export const searchContainer = css`
   align-items: center;
   max-width: 1184px;
   padding: 52px 44px;
+  position: relative;
 `;
 
 export const divider = css`

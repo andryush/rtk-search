@@ -4,12 +4,11 @@ import CardList from '@/components/CardList';
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useGetSpecialistsQuery } from '@/store/apiSlice';
+import { Spinner } from '@/components/Spinner';
 
 const SearchPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { data } = useGetSpecialistsQuery(searchParams.toString(), { skip: !searchParams.toString() });
-
-  console.log('data', data);
+  const { data, isLoading } = useGetSpecialistsQuery(searchParams.toString(), { skip: !searchParams.toString() });
 
   useEffect(() => {
     const params = searchParams.toString();
@@ -26,6 +25,7 @@ const SearchPage = () => {
     <div css={styles.searchContainer}>
       <FiltersBar />
       <hr css={styles.divider} color="#ccc" />
+      {isLoading && <Spinner />}
       {data?.data.items.length ? <CardList /> : <Empty />}
       <div style={{ background: 'blue', width: '100%', height: '50px' }}></div>
     </div>

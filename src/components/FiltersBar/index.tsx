@@ -20,7 +20,7 @@ export const FiltersBar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { control, handleSubmit, setValue } = useForm();
 
-  const [trigger] = useLazyGetSpecialistsQuery();
+  const [trigger, lastPromiseInfo] = useLazyGetSpecialistsQuery();
 
   const offsetCounter = () => {
     const offset = searchParams.get('offset') ?? 0;
@@ -46,7 +46,7 @@ export const FiltersBar = () => {
     trigger(searchParams.toString());
   };
 
-  const { data } = useGetSubjectsQuery(undefined);
+  const { data, isLoading } = useGetSubjectsQuery(undefined);
 
   const subjects = useMemo(
     () => [SUBJECTS_DEFAULT, ...(data?.data.map((s) => ({ value: s.id, label: s.name })) || [])],
@@ -203,7 +203,11 @@ export const FiltersBar = () => {
           />
         </div>
         <div css={styles.filterWithLabelContainer}>
-          <button onClick={handleSubmit(handleSearch)} css={styles.searchButton}>
+          <button
+            disabled={isLoading || lastPromiseInfo.isLoading}
+            onClick={handleSubmit(handleSearch)}
+            css={styles.searchButton}
+          >
             Показать анкеты
           </button>
         </div>
