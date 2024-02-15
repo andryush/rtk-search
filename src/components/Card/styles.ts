@@ -5,7 +5,7 @@ export const card = css`
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  max-width: 300px;
+  max-width: 352px;
   position: relative;
 `;
 

@@ -15,3 +15,23 @@ export const searchContainer = css`
 export const divider = css`
   width: 100%;
 `;
+
+export const searchButton = css`
+  min-width: 312px;
+  background-color: #ff006b;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 20px;
+  border: unset;
+  height: 52px;
+  cursor: pointer;
+  &:hover {
+    border-color: rgb(194, 10, 87);
+    background-color: rgb(194, 10, 87);
+  }
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+`;

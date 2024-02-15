@@ -27,7 +27,9 @@ const SearchPage = () => {
       <hr css={styles.divider} color="#ccc" />
       {isLoading && <Spinner />}
       {data?.data.items.length ? <CardList /> : <Empty />}
-      <div style={{ background: 'blue', width: '100%', height: '50px' }}></div>
+      <div>
+        <button css={styles.searchButton}>Показать еще</button>
+      </div>
     </div>
   );
 };
